@@ -1,0 +1,28 @@
+{
+    "properties": {
+        "displayName": "Audit Linux VMs that do not have the specified applications installed",
+        "description": "This initiative deploys the policy requirements and audits Linux virtual machines that do not have the specified applications installed. For more information on guest configuration policies, please visit https://aka.ms/gcpol",
+        "parameters": {
+            "applicationName": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Application names",
+                    "description": "A semicolon-separated list of the names of the applications that should be installed. e.g. python; powershell"
+                }
+            }
+        },
+        "policyDefinitions": [
+            {
+                "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/fee5cb2b-9d9b-410e-afe3-2902d90d0004"
+            },
+            {
+                "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4d1c04de-2172-403f-901b-90608c35c721",
+                "parameters": {
+                    "applicationName": {
+                        "value": "[parameters('applicationName')]"
+                    }
+                }
+            }
+        ]
+    }
+}
